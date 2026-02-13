@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venlux Tech</title>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ========== GLOBAL RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #1f2937;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ========== BACKGROUND CANVAS ====== */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* behind everything */
+  pointer-events: none;
+}
+
+/* ========== HEADER ========== */
+header.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  background: #fff;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  font-weight: 800;
+  font-size: 24px;
+  color: #2563eb;
+}
+
+header nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+header nav a:hover {
+  color: #2563eb;
+}
+
+/* ========== HERO SECTION ========== */
+.hero-feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 8%;
+  background: linear-gradient(135deg,#f0f4ff,#e0efff);
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  margin: 40px 8%;
+}
+
+.hero-content {
+  width: 50%;
+}
+
+.hero-content .small-title {
+  font-weight: 600;
+  color: #2563eb;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero-content h1 {
+  font-size: 60px;
+  margin: 20px 0;
+  color: #1e293b;
+}
+
+.hero-content .desc {
+  font-size: 18px;
+  color: #475569;
+  margin-bottom: 30px;
+}
+
+.hero-image {
+  width: 45%;
+  position: relative;
+}
+
+.circle-bg {
+  width: 450px;
+  height: 450px;
+  background: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.circle-bg img:hover {
+  transform: scale(1.05);
+}
+
+.feature-box {
+  position: absolute;
+  top: 40px;
+  left: -40px;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.feature-box h2 {
+  font-size: 40px;
+  color: #2563eb;
+}
+
+.feature-box p {
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+/* CONTACT FLOAT BUTTON */
+.contact-float {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: rotate(-90deg);
+  background: #2563eb;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 10px 10px 0 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* CONTACT POPUP */
+.contact-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.contact-box {
+  background: #fff;
+  width: 380px;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  animation: popup 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+@keyframes popup {
+  from {transform: scale(0.7); opacity:0;}
+  to {transform: scale(1); opacity:1;}
+}
+
+.contact-box h2 {
+  color: #2563eb;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact-box input,
+.contact-box textarea,
+.contact-box select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  outline: none;
+}
+
+.contact-box button {
+  width: 100%;
+  padding: 14px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-box button:hover {
+  background: #1e40af;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ====== ABOUT, WHY CHOOSE, STATS, TIMELINE, TESTIMONIALS, FOOTER ====== */
+/* Keep your existing CSS for sections here (from your code above)... */
+
+/* FLOATING HERO IMAGE */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<!-- HEADER -->
+<header class="navbar">
+  <div class="logo">VENLUX</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-feature">
+  <div class="hero-content">
+    <p class="small-title">IT Solution Company</p>
+    <h1 id="typeText"></h1>
+    <p class="desc">
+      We build high-performance websites, AI solutions & business software 
+      that help brands grow faster, smarter and stronger in the digital world.
+    </p>
+  </div>
+  <div class="hero-image">
+    <div class="circle-bg">
+      <img src="img/team.png" alt="Tech User">
+    </div>
+    <div class="feature-box">
+      <h2>50+</h2>
+      <p>Projects Complete</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FLOAT -->
+<button class="contact-float" onclick="openForm()">Contact us ✉</button>
+<div class="contact-popup" id="contactPopup">
+  <div class="contact-box">
+    <span class="close-btn" onclick="closeForm()">×</span>
+    <h2>Contact Form</h2>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="tel" placeholder="Phone*" required>
+      <input type="email" placeholder="Email*" required>
+      <textarea placeholder="Message"></textarea>
+      <a href="javascript:void(0)" class="btn-main" onclick="sendWhatsApp()">Contact Us →</a>
+    </form>
+  </div>
+</div>
+
+<!-- About, Why Choose, Stats, Timeline, Testimonials, Footer... -->
+<!-- Keep all your existing sections as-is here -->
+ <!-- CONTACT FLOAT -->
+<button class="contact-float" onclick="openForm()">Contact us ✉</button>
+
+<div class="contact-popup" id="contactPopup">
+  <div class="contact-box">
+    <span class="close-btn" onclick="closeForm()">×</span>
+    <h2>Contact Form</h2>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="tel" placeholder="Phone*" required>
+      <input type="email" placeholder="Email*" required>
+      <textarea placeholder="Message"></textarea>
+      <a href="javascript:void(0)" class="btn-main" onclick="sendWhatsApp()">Contact Us →</a>
+    </form>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-company">
+  <div class="about-left">
+    <p class="tagline">Trusted IT Partner for Growing Businesses Worldwide</p>
+
+<p class="about-text">
+At Venlux Tech, we design powerful digital solutions that transform ideas into 
+successful online businesses. From modern websites to AI-powered systems, 
+we help companies increase growth, automation and customer engagement.
+</p>
+
+    <div class="cta-area">
+            <a href="javascript:void(0)" class="btn-main" onclick="sendWhatsApp()">Contact Us →</a>
+      <div class="hotline">
+        <span>📞</span>
+        <div>
+          <small>Hotline</small>
+          <strong>+91 9307317213</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <img src="img/men.jpg" alt="">
+  </div>
+</section>
+
+<section class="about-detail">
+  <div class="detail-left">
+    <img src="img/women1 (1).jpg" alt="">
+  </div>
+  <div class="detail-right">
+<span class="small-heading">About Venlux Tech</span>
+
+<h2>
+Smart Digital Solutions <br>
+Built for Real Business Growth
+</h2>
+
+<p>
+We are a creative IT company delivering secure, scalable and high-performance 
+digital products tailored to your business goals. Our focus is quality, innovation 
+and long-term success.
+</p>
+
+  </div>
+</section>
+<a href="https://wa.me/919307317213" class="whatsapp-float">💬</a>
+
+<!-- WHY CHOOSE -->
+<section class="why-choose">
+  <h2 class="section-title">Why Choose Venlux</h2>
+  <p class="section-subtitle">We focus on quality, reliability and results for your business.</p>
+  <div class="choose-cards">
+    <div class="choose-card">
+      <img src="img/price.png" class="card-img">
+      <h3>Affordable Pricing</h3>
+      <p>High-quality IT solutions at competitive prices.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/time.png" class="card-img">
+      <h3>On-Time Delivery</h3>
+      <p>Projects delivered as promised, every time.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/design.png" class="card-img">
+      <h3>Custom Design</h3>
+      <p>Tailor-made solutions for your business goals.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/support.png" class="card-img">
+      <h3>After Delivery Support</h3>
+      <p>Continuous support even after project completion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div><h3>50+</h3><p>Projects Delivered</p></div>
+  <div><h3>98%</h3><p>Client Satisfaction</p></div>
+  <div><h3>5+</h3><p>AI Solutions</p></div>
+  <div><h3>24/7</h3><p>Support</p></div>
+</section>
+
+<!-- ====== COMPANY PROCESS - LINE STYLE ====== -->
+<section class="company-process section">
+  <div class="container">
+    <h2 class="section-title">Our <span>Development Process</span></h2>
+    <p class="section-subtitle">Step-by-step methodology to deliver AI-powered digital solutions.</p>
+
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="step-circle">1</div>
+        <h3>Discovery & Strategy</h3>
+        <p>Analyze business needs and define roadmap for success.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">2</div>
+        <h3>UI/UX & Architecture</h3>
+        <p>Design modern interfaces and scalable architecture.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">3</div>
+        <h3>Development & AI Integration</h3>
+        <p>Build robust solutions with AI integration.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">4</div>
+        <h3>Testing & Security</h3>
+        <p>Perform QA and enterprise-level security checks.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="step-circle">5</div>
+        <h3>Launch & Support</h3>
+        <p>Deploy with monitoring, support, and continuous optimization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimonials section">
+  <div class="container">
+    <h2 class="section-title">What <span>Clients Say</span></h2>
+    <p class="section-subtitle">Trusted by businesses around the globe.</p>
+
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>"Venlux delivered our app with amazing design and smooth AI integration. Highly recommend!"</p>
+        <h4>— John Doe, CEO, TechCorp</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Professional team, always on time, and the support is top-notch."</p>
+        <h4>— Maria Smith, Founder, FinSolutions</h4>
+      </div>
+      <div class="testimonial-card">
+        <p>"Our website traffic and conversions increased drastically thanks to Venlux."</p>
+        <h4>— Liam Johnson, Marketing Head, MediaHub</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <h3>Venlux Tech</h3>
+    <p>AI-Driven Digital Engineering</p>
+  </div>
+  <div>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="#">Careers</a>
+  </div>
+  <p>© 2026 Venlux Tech. All Rights Reserved.</p>
+</footer>
+
+<a href="https://wa.me/919307317213" class="whatsapp-float">💬</a>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration: 1000, once: true});
+
+function openForm(){ document.getElementById("contactPopup").style.display="flex"; }
+function closeForm(){ document.getElementById("contactPopup").style.display="none"; }
+
+function sendWhatsApp(){
+  const phone = "919307317213";
+  const message = "Hello Venlux Tech! I am interested in your website and IT services.";
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+/* Typing Effect */
+const text = "Venlux Tech";
+let i = 0;
+function typing(){
+  if(i < text.length){
+    document.getElementById("typeText").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing,120);
+  }
+}
+typing();
+
+/* Testimonials Slider */
+let index = 0;
+const cards = document.querySelectorAll(".testimonial-card");
+setInterval(()=>{
+  cards.forEach(c=>c.style.display="none");
+  cards[index].style.display="block";
+  index = (index+1) % cards.length;
+},3000);
+
+/* Timeline Steps Animation */
+const steps = document.querySelectorAll(".timeline-step");
+const stepObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add("active"); }
+  });
+},{threshold:.6});
+steps.forEach(s=>stepObs.observe(s));
+
+/* Stats Count-Up */
+const counters = document.querySelectorAll(".stats h3");
+counters.forEach(counter=>{
+  let target = +counter.innerText.replace(/\D/g,'');
+  let count = 0;
+  let interval = setInterval(()=>{
+    count += Math.ceil(target/80);
+    if(count >= target){
+      counter.innerText = counter.innerText.includes('%') ? target+'%' : target+'+';
+      clearInterval(interval);
+    } else counter.innerText = count;
+  },30);
+});
+
+/* Navbar scroll */
+window.addEventListener("scroll",()=>{
+  document.querySelector(".navbar").classList.toggle("scrolled", window.scrollY > 60);
+});
+</script>
+
+<script>
+// ===== Three.js Animated Background =====
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 50;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, canvas: document.getElementById('bgCanvas') });
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Random cubes
+const shapes = [];
+for(let i=0;i<50;i++){
+  const geometry = new THREE.BoxGeometry(Math.random()*3+1, Math.random()*3+1, Math.random()*3+1);
+  const material = new THREE.MeshStandardMaterial({color:0x2563eb, transparent:true, opacity:0.6});
+  const cube = new THREE.Mesh(geometry, material);
+  cube.position.set((Math.random()-0.5)*100,(Math.random()-0.5)*100,(Math.random()-0.5)*100);
+  cube.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+  scene.add(cube);
+  shapes.push(cube);
+}
+
+// Light
+const light = new THREE.DirectionalLight(0xffffff,1);
+light.position.set(0,0,100).normalize();
+scene.add(light);
+
+// Animate
+function animate(){
+  requestAnimationFrame(animate);
+  shapes.forEach(shape=>{
+    shape.rotation.x += 0.002;
+    shape.rotation.y += 0.003;
+    shape.position.x += Math.sin(Date.now()*0.001+shape.position.y)*0.01;
+    shape.position.y += Math.cos(Date.now()*0.001+shape.position.x)*0.01;
+  });
+  renderer.render(scene,camera);
+}
+animate();
+
+// Resize
+window.addEventListener('resize',()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>

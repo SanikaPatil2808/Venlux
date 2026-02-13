@@ -67,6 +67,43 @@
   width:100%;
   border-radius:24px;
 }
+/* ===== HERO SECTION RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .hero-video {
+    height: 400px; /* smaller height on tablets */
+  }
+
+  .hero-overlay {
+    padding: 0 40px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 42px;
+  }
+
+  .hero-overlay p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-video {
+    height: 300px; /* mobile height */
+  }
+
+  .hero-overlay {
+    padding: 0 20px;
+  }
+
+  .hero-overlay h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .hero-overlay p {
+    font-size: 16px;
+  }
+}
 
 
   .services {
@@ -120,8 +157,7 @@
   }
 }
 .service-card:hover,
-.feature-card:hover,
-.amc-card:hover{
+.feature-card:hover{
   transform:translateY(-10px) scale(1.02);
   box-shadow:0 20px 45px rgba(37,99,235,.18);
 }
@@ -148,67 +184,119 @@
   gap:28px;
 }
 /* ===== MODERN PREMIUM CARD DESIGN ===== */
-
+/* PREMIUM MODERN 3D CARDS */
 .feature-card,
-.service-card,
-.amc-card{
-  position:relative;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(10px);
-  border-radius:22px;
-  padding:32px 26px;
-  box-shadow:0 15px 40px rgba(0,0,0,.08);
-  transition:.45s cubic-bezier(.23,1,.32,1);
-  overflow:hidden;
+.service-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+  transform-style: preserve-3d;
 }
 
-/* gradient border glow */
+/* GRADIENT BORDER & GLOW */
 .feature-card::before,
-.service-card::before,
-.amc-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:22px;
-  padding:1.5px;
-  background:linear-gradient(135deg,#2563eb,#7c3aed,#22c55e);
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #22c55e);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
-  opacity:.4;
-  transition:.4s;
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.5;
+  transition: 0.4s;
 }
 
+/* LIFT + GLOW ON HOVER */
 .feature-card:hover::before,
-.service-card:hover::before,
-.amc-card:hover::before{
-  opacity:1;
+.service-card:hover::before {
+  opacity: 1;
 }
 
-/* lift + glow */
 .feature-card:hover,
-.service-card:hover,
-.amc-card:hover{
-  transform:translateY(-14px) scale(1.03);
-  box-shadow:0 28px 65px rgba(37,99,235,.25);
-}
-.amc-card.featured{
-  background:linear-gradient(135deg,#2563eb,#4f46e5);
-  color:#fff;
+.service-card:hover {
+  transform: translateY(-20px) rotateX(8deg) rotateY(8deg) scale(1.05);
+  box-shadow: 0 35px 80px rgba(37, 99, 235, 0.25);
 }
 
-.amc-card.featured li,
-.amc-card.featured p{
-  color:#eef2ff;
+/* 3D SHINE EFFECT */
+.feature-card::after,
+.service-card::after {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: 0.8s;
 }
 
-.hidden{
-  opacity:0;
-  transform:translateY(60px);
-  transition:.8s ease;
+.feature-card:hover::after,
+.service-card:hover::after {
+  top: 0;
+  left: 0;
 }
+
+/* FLOATING ANIMATION */
+.feature-card,
+.service-card
+{
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ICON + TITLE STYLE */
+.feature-card span,
+.service-card span
+ {
+  font-size: 46px;
+  display: inline-block;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover span,
+.service-card:hover  {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.feature-card h3,
+.service-card h3{
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.feature-card p,
+.service-card p {
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+
 
 .show{
   opacity:1;
@@ -304,8 +392,7 @@
 
 /*3d effect*/
 .feature-card::after,
-.service-card::after,
-.amc-card::after{
+.service-card::after{
   content:"";
   position:absolute;
   top:-100%;
@@ -323,19 +410,16 @@
 }
 
 .feature-card:hover::after,
-.service-card:hover::after,
-.amc-card:hover::after{
+.service-card:hover::after{
   top:0;
   left:0;
 }
 .feature-card:hover,
-.service-card:hover,
-.amc-card:hover{
+.service-card:hover{
   transform:translateY(-14px) scale(1.05) rotateX(6deg);
 }
 .feature-card,
-.service-card,
-.amc-card{
+.service-card{
   animation:floaty 6s ease-in-out infinite;
 }
 
@@ -392,6 +476,200 @@
   background:#2563eb;
   width:0%;
   z-index:999;
+}
+
+/*amc- card*/
+
+/* Container setup */
+.amc-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  perspective: 1000px; /* 3D tilt perspective */
+  padding: 2rem;
+  background: linear-gradient(135deg, #ece0cd, #158176); /* Purple → Orange → Blue */
+  border-radius: 20px;
+}
+
+/* Card styling */
+.amc-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 300px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Featured card highlight with purple → orange → blue gradient */
+.amc-card.featured {
+  background: linear-gradient(135deg, #c8c4d3, #dfd8cd, #32f0dd);
+  color: #fff;
+}
+
+
+
+/* 3D tilt effect on hover */
+.amc-card:hover {
+  transform: rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+/* Animated background overlay */
+.amc-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  z-index: 0;
+}
+
+.amc-card:hover::before {
+  opacity: 1;
+  transform: rotate(45deg);
+}
+
+/* Card content above overlay */
+.amc-card h3, 
+.amc-card p, 
+.amc-card ul {
+  position: relative;
+  z-index: 1;
+}
+
+/* List styling */
+.amc-card ul {
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.amc-card ul li {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Smooth transition for featured card text color */
+.amc-card.featured h3, 
+.amc-card.featured p, 
+.amc-card.featured ul li {
+  transition: color 0.3s ease;
+}
+
+.process-section {
+  padding: 100px 5%;
+  background: #f9fafc;
+  position: relative;
+}
+
+.process-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Curved line connecting steps */
+.process-container::before {
+  content: "";
+  position: absolute;
+  top: 35px; /* adjust to center circles */
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-top: 2px dashed #8b5cf6;
+  z-index: 0;
+}
+
+/* Individual step */
+.process-step {
+  position: relative;
+  text-align: center;
+  width: 18%;
+  z-index: 1;
+}
+
+/* Step number circle */
+.step-number {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background: #1e40af; /* blue color */
+  color: white;
+  border-radius: 50%;
+  margin: auto;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Step content */
+.step-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.step-content h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.step-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive */
+
+@media(max-width: 992px){
+  .process-container {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .process-step {
+    width: 45%;
+  }
+}
+@media(max-width: 600px){
+  .process-step {
+    width: 100%;
+  }
+  .process-container::before {
+    top: 40px;
+  }
+}
+
+/* Hover effect for each step */
+.process-step:hover .step-number {
+  background: #7c3aed; /* purple glow */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.6), 0 10px 25px rgba(0,0,0,0.1);
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+.process-step:hover .step-content {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transition: 0.4s;
+}
+
+/* Smooth transition for step elements */
+.step-number, .step-content {
+  transition: all 0.4s ease;
 }
 
 
@@ -465,7 +743,59 @@
   <a href="https://wa.me/919307317213" class="whatsapp-float">💬</a>
 
 </section>
+  
 
+<!--Work proccess start-->
+ <section class="process-section">
+  <div class="process-container">
+    <!-- Step 1 -->
+    <div class="process-step">
+      <div class="step-number">01</div>
+      <div class="step-content">
+        <h3>Discover</h3>
+        <p>Our design approach is to simplify. We embrace creating something.</p>
+      </div>
+    </div>
+    
+    <!-- Step 2 -->
+    <div class="process-step">
+      <div class="step-number">02</div>
+      <div class="step-content">
+        <h3>Planning</h3>
+        <p>We denounce righteous indignation and dislike men who beguiled</p>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="process-step">
+      <div class="step-number">03</div>
+      <div class="step-content">
+        <h3>Design & Dev</h3>
+        <p>At this step, we cater to requirement backed web services</p>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="process-step">
+      <div class="step-number">04</div>
+      <div class="step-content">
+        <h3>Testing</h3>
+        <p>Our design approach is to simplify. We embrace creating something.</p>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="process-step">
+      <div class="step-number">05</div>
+      <div class="step-content">
+        <h3>Project Deliver</h3>
+        <p>We denounce righteous indignation and dislike men who beguiled</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--end process-->
 
     
 <section class="section amc-section">
@@ -610,7 +940,10 @@
     Let’s discuss your project and build something powerful together.
   </p>
   <div class="hero-buttons" style="justify-content:center;">
-    <a href="#contact" class="secondary-btn">Get Free Consultation</a>
+   <a href="tel:+919307317213" class="secondary-btn">
+  Get Free Consultation
+</a>
+
   </div>
 </section>
  <!-- ================= FAQ ================= -->
@@ -750,21 +1083,7 @@ document.querySelectorAll(".faq-question").forEach(btn=>{
 });
 
 
-/* ===== HOVER MICRO ANIMATION ===== */
-document.querySelectorAll(".feature-card,.amc-card").forEach(card=>{
-  card.addEventListener("mousemove",e=>{
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
 
-    card.style.transform =
-      `translateY(-6px) rotateX(${(y-80)/25}deg) rotateY(${(x-80)/25}deg)`;
-  });
-
-  card.addEventListener("mouseleave",()=>{
-    card.style.transform="translateY(0)";
-  });
-});
 </script>
 <script>
 const buttons = document.querySelectorAll(".toggle-btn");
@@ -817,6 +1136,31 @@ window.addEventListener("scroll",()=>{
   const scrolled = 
     (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
   document.querySelector(".scroll-progress").style.width = scrolled + "%";
+});
+
+
+
+
+/* ===== HOVER MICRO ANIMATION ===== */
+
+
+document.querySelectorAll(".feature-card, .amc-card").forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * 10; // max 10 deg
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    card.style.transform = `translateY(-10px) rotateX(${ -rotateX }deg) rotateY(${ rotateY }deg) scale(1.05)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(0) rotateX(0) rotateY(0) scale(1)";
+  });
 });
 
 </script>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venlux Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ===== GLOBAL STYLES ===== */
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:#f9f9f9; color:#1f2937; overflow-x:hidden; }
+img { max-width:100%; display:block; height:auto; }
+a { text-decoration:none; color:inherit; }
+
+/* ===== NAVBAR ===== */
+header.navbar { display:flex; justify-content:space-between; align-items:center; padding:20px 8%; background:#fff; box-shadow:0 3px 15px rgba(0,0,0,.05); position:sticky; top:0; z-index:999; }
+header.navbar .logo { font-size:26px; font-weight:700; color:#2563eb; }
+header.navbar nav a { margin-left:25px; font-weight:500; transition:.3s; }
+header.navbar nav a:hover { color:#7c6be6; }
+@media(max-width:900px){ header.navbar{flex-direction:column; gap:10px;} header.navbar nav{display:flex; flex-wrap:wrap; justify-content:center;} }
+
+/* ===== HERO ===== */
+.hero-feature { display:flex; align-items:center; justify-content:space-between; padding:80px 8%; background:#f7f9ff; position:relative; overflow:hidden; }
+.hero-content { width:50%; }
+.hero-content .small-title { font-weight:600; color:#1e3a8a; letter-spacing:1px; margin-bottom:15px; }
+.hero-content h1 { font-size:60px; line-height:1.1; color:#0f172a; margin-bottom:20px; }
+.hero-content .desc { font-size:18px; line-height:1.6; color:#4b5563; }
+.hero-image { width:45%; position:relative; }
+.circle-bg { width:450px; height:450px; background:#dbeafe; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-left:auto; }
+.circle-bg img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.feature-box { position:absolute; top:40px; left:-40px; background:#fff; padding:25px 30px; border-radius:16px; box-shadow:0 15px 30px rgba(0,0,0,.15); text-align:center; }
+.feature-box h2 { font-size:40px; color:#2563eb; }
+.feature-box p { margin-top:5px; font-weight:600; }
+
+/* Floating Social Icons */
+.social-floating { position:absolute; left:40px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:15px; }
+.social-floating a { background:white; padding:12px; border-radius:50%; box-shadow:0 8px 20px rgba(0,0,0,.1); font-size:18px; display:flex; justify-content:center; align-items:center; }
+
+/* Contact Button */
+.contact-float { position:fixed; right:0; top:50%; transform:rotate(-90deg); background:#7c6be6; color:white; padding:12px 25px; border-radius:10px 10px 0 0; border:none; cursor:pointer; font-weight:600; z-index:999; }
+.contact-popup { position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; justify-content:center; align-items:center; z-index:1000; }
+.contact-box { background:white; width:380px; padding:30px; border-radius:18px; position:relative; animation:popup .4s ease; }
+@keyframes popup { from {transform:scale(.7); opacity:0;} to {transform:scale(1); opacity:1;} }
+.contact-box h2 { color:#7c6be6; margin-bottom:20px; }
+.contact-box input, .contact-box textarea, .contact-box select { width:100%; padding:14px; margin-bottom:14px; border-radius:30px; border:1px solid #ddd; outline:none; }
+.contact-box textarea { height:120px; border-radius:18px; }
+.contact-box button { width:100%; padding:14px; background:#7c6be6; color:white; border:none; border-radius:30px; font-size:16px; }
+.close-btn { position:absolute; right:15px; top:10px; font-size:24px; cursor:pointer; }
+
+/* ABOUT */
+.about-company, .about-detail, .contact-section { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:80px 8%; gap:60px; max-width:1200px; margin:0 auto; }
+.about-left, .about-right, .detail-left, .detail-right, .contact-info, .ai-form { width:50%; }
+.about-right img, .detail-left img { width:100%; height:420px; object-fit:cover; border-radius:20px; box-shadow:0 12px 35px rgba(0,0,0,.15); }
+.tagline { font-weight:600; color:#2563eb; margin-bottom:15px; }
+.about-text { font-size:18px; color:#444; line-height:1.7; }
+.cta-area { display:flex; align-items:center; gap:30px; margin-top:30px; }
+.btn-main { background:#2563eb; color:white; padding:14px 32px; border-radius:8px; font-weight:600; }
+.hotline { display:flex; align-items:center; gap:10px; font-size:16px; }
+.detail-right h2 { font-size:42px; margin:15px 0; }
+.detail-right p { color:#555; line-height:1.7; }
+.small-heading { color:#2563eb; font-weight:600; }
+
+/* WHY CHOOSE */
+.why-choose { background:#f8faff; padding:60px 8%; }
+.why-choose .section-title { text-align:center; font-size:36px; margin-bottom:15px; }
+.why-choose .section-subtitle { text-align:center; color:#555; margin-bottom:40px; }
+.choose-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:30px; }
+.choose-card { background:white; padding:30px 20px; border-radius:18px; text-align:center; box-shadow:0 12px 30px rgba(0,0,0,.08); transition:.4s; }
+.choose-card:hover { transform:translateY(-10px); }
+.choose-card img { width:100px; margin-bottom:20px; }
+.choose-card h3 { font-size:20px; margin-bottom:10px; }
+.choose-card p { color:#555; line-height:1.6; }
+
+/* STATS */
+.stats { display:flex; justify-content:space-around; align-items:center; padding:60px 8%; flex-wrap:wrap; gap:20px; background:#fff; }
+.stats div h3 { font-size:32px; color:#2563eb; margin-bottom:8px; }
+.stats div p { color:#555; }
+
+/* AI FORM */
+.contact-section { gap:40px; background:#fff; border-radius:20px; padding:60px 8%; }
+.contact-info h2 { font-size:36px; color:#2563eb; margin-bottom:15px; }
+.contact-info p { color:#444; margin-bottom:20px; }
+.contact-info ul { list-style:none; padding-left:0; }
+.contact-info ul li { margin-bottom:10px; font-size:16px; }
+
+/* Form */
+.ai-form { display:flex; flex-direction:column; gap:15px; }
+.ai-form input, .ai-form select, .ai-form textarea { padding:12px 15px; border-radius:10px; border:1px solid #ddd; outline:none; width:100%; }
+.ai-form button { background:#2563eb; color:white; border:none; padding:14px; border-radius:10px; cursor:pointer; font-weight:600; }
+
+/* TIMELINE */
+.timeline-horizontal { display:flex; overflow-x:auto; gap:20px; padding:30px 8%; }
+.timeline-step { min-width:220px; background:#fff; padding:20px; border-radius:12px; text-align:center; box-shadow:0 8px 20px rgba(0,0,0,.08); }
+.timeline-step .step-circle { width:50px; height:50px; background:#2563eb; color:#fff; font-weight:700; border-radius:50%; line-height:50px; margin:0 auto 15px; }
+
+/* FOOTER */
+.footer { display:flex; justify-content:space-between; flex-wrap:wrap; padding:40px 8%; background:#1e293b; color:white; gap:20px; }
+.footer h3 { font-size:24px; margin-bottom:10px; }
+.footer a { color:white; margin-right:15px; transition:.3s; }
+.footer a:hover { color:#7c6be6; }
+.footer p { width:100%; text-align:center; margin-top:15px; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-feature, .about-left, .about-right, .detail-left, .detail-right, .contact-info, .ai-form { width:100%; }
+  .circle-bg { width:280px; height:280px; margin:20px auto; }
+  .feature-box { position:static; margin:-50px auto 20px; }
+  .hero-content h1 { font-size:40px; }
+  .detail-right h2 { font-size:32px; }
+}
+@media(max-width:480px){ .circle-bg { width:220px; height:220px; } .hero-content h1 { font-size:32px; } .desc { font-size:15px; } }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">VENLUX</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#contact">Get Quote</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-feature">
+  <div class="hero-content">
+    <p class="small-title">IT Solution Company</p>
+    <h1>Venlux</h1>
+    <p class="desc">Best developers & analytics creating modern web and mobile applications tailored for your business growth.</p>
+  </div>
+  <div class="hero-image">
+    <div class="circle-bg"><img src="img/team.png" alt="Tech User"></div>
+    <div class="feature-box"><h2>50+</h2><p>Projects Complete</p></div>
+  </div>
+  <div class="social-floating">
+    <a href="#">📞</a>
+    <a href="#">💬</a>
+    <a href="#">in</a>
+    <a href="#">✉</a>
+    <a href="#">📷</a>
+  </div>
+</section>
+
+<!-- CONTACT BUTTON -->
+<button class="contact-float" onclick="openForm()">Contact us ✉</button>
+<div class="contact-popup" id="contactPopup">
+  <div class="contact-box">
+    <span class="close-btn" onclick="closeForm()">×</span>
+    <h2>Contact Form</h2>
+    <form>
+      <input type="text" placeholder="Name">
+      <input type="tel" placeholder="Phone*" required>
+      <input type="email" placeholder="Email*" required>
+      <textarea placeholder="Message"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-company">
+  <div class="about-left">
+    <p class="tagline">We rank among the best in the US, Argentina, and Ukraine.</p>
+    <p class="about-text">Welcome to Vescript, a software development company helping businesses digitize operations by focusing on challenges, needs, and goals.</p>
+    <div class="cta-area">
+      <a href="#" class="btn-main">Contact Us →</a>
+      <div class="hotline">
+        <span>📞</span>
+        <div>
+          <small>Hotline</small>
+          <strong>+91 8237377706</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right">
+    <img src="img/men.jpg" alt="">
+  </div>
+</section>
+
+<section class="about-detail">
+  <div class="detail-left"><img src="img/women1 (1).jpg" alt=""></div>
+  <div class="detail-right">
+    <span class="small-heading">About Company</span>
+    <h2>Small Enough to Care <br>Big Enough to Success</h2>
+    <p>Welcome to Vescript, where we care deeply about clients and deliver personalized, powerful digital solutions that drive real success.</p>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why-choose">
+  <h2 class="section-title">Why Choose Venlux</h2>
+  <p class="section-subtitle">We focus on quality, reliability and results for your business.</p>
+  <div class="choose-cards">
+    <div class="choose-card">
+      <img src="img/price.png" class="card-img">
+      <h3>Affordable Pricing</h3>
+      <p>High-quality IT solutions at competitive prices.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/time.png" class="card-img">
+      <h3>On-Time Delivery</h3>
+      <p>Projects delivered as promised, every time.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/design.png" class="card-img">
+      <h3>Custom Design</h3>
+      <p>Tailor-made solutions for your business goals.</p>
+    </div>
+    <div class="choose-card">
+      <img src="img/support.png" class="card-img">
+      <h3>After Delivery Support</h3>
+      <p>Continuous support even after project completion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div><h3>50+</h3><p>Projects Delivered</p></div>
+  <div><h3>98%</h3><p>Client Satisfaction</p></div>
+  <div><h3>5+</h3><p>AI Solutions</p></div>
+  <div><h3>24/7</h3><p>Support</p></div>
+</section>
+
+<!-- AI FORM -->
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <h2>Start Your Project</h2>
+    <p>Tell us about your idea and our AI-driven team will transform it into a high-performance digital product.</p>
+    <ul>
+      <li>⚡ Fast turnaround</li>
+      <li>🤖 AI-first solutions</li>
+      <li>🔒 Enterprise-grade security</li>
+      <li>📞 Dedicated support</li>
+    </ul>
+  </div>
+  <form class="ai-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <select required>
+      <option value="">Select Service</option>
+      <option>Website Development</option>
+      <option>Web Application</option>
+      <option>AI Integration</option>
+      <option>Social Media Ads</option>
+    </select>
+    <textarea placeholder="Tell us about your project" rows="4"></textarea>
+    <button type="submit">Get Free AI Consultation</button>
+  </form>
+</section>
+
+<!-- DEVELOPMENT PROCESS -->
+<section class="section dark" id="process">
+  <div class="process-container">
+    <h2>Our <span>Development Process</span></h2>
+    <p class="process-subtitle">Step-by-step methodology to deliver AI-powered digital solutions.</p>
+    <div class="timeline-horizontal">
+      <div class="timeline-step"><div class="step-circle">1</div><h3>Discovery & Strategy</h3></div>
+      <div class="timeline-step"><div class="step-circle">2</div><h3>UI/UX & Architecture</h3></div>
+      <div class="timeline-step"><div class="step-circle">3</div><h3>Development & AI Integration</h3></div>
+      <div class="timeline-step"><div class="step-circle">4</div><h3>Testing & Security</h3></div>
+      <div class="timeline-step"><div class="step-circle">5</div><h3>Launch & Support</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div><h3>Venlux Tech</h3><p>AI-Driven Digital Engineering</p></div>
+  <div>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="#">Careers</a>
+  </div>
+  <p>© 2026 Venlux Tech. All Rights Reserved.</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+function openForm(){ document.getElementById("contactPopup").style.display="flex"; }
+function closeForm(){ document.getElementById("contactPopup").style.display="none"; }
+</script>
+
+</body>
+</html>

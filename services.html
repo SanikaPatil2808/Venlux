@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Services | Venlux IT Company</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Main CSS -->
+  
+  <link rel="stylesheet" href="assets/style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  
+  .hero-video{
+  position:relative;
+  width:100%;
+  height:500px;
+  overflow:hidden;
+}
+
+.hero-video video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero-overlay{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 80px;
+  color:white;
+  background:rgba(0,0,0,.45);
+}
+
+.hero-overlay h1{
+  font-size:58px;
+  margin-bottom:15px;
+}
+
+.hero-overlay p{
+  font-size:20px;
+}
+
+
+.btn{
+  padding:14px 32px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.primary-btn{
+  background:#2563eb;
+  color:#fff;
+}
+
+.hero-img img{
+  width:100%;
+  border-radius:24px;
+}
+
+
+  .services {
+  width: 100%;
+  padding: 70px 6%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Service card style */
+.service-card {
+  background: #ffffff;
+  padding: 32px 26px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .services {
+    padding: 50px 18px;
+  }
+
+  .service-card {
+    padding: 26px 20px;
+  }
+
+  .icon {
+    font-size: 38px;
+  }
+}
+.service-card:hover,
+.feature-card:hover,
+.amc-card:hover{
+  transform:translateY(-10px) scale(1.02);
+  box-shadow:0 20px 45px rgba(37,99,235,.18);
+}
+
+.features{
+  padding:100px 80px;
+  background:#fff;
+}
+
+.section-header h2{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.section-header p{
+  color:#555;
+  font-size:17px;
+  margin-bottom:40px;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:28px;
+}
+/* ===== MODERN PREMIUM CARD DESIGN ===== */
+
+.feature-card,
+.service-card,
+.amc-card{
+  position:relative;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(10px);
+  border-radius:22px;
+  padding:32px 26px;
+  box-shadow:0 15px 40px rgba(0,0,0,.08);
+  transition:.45s cubic-bezier(.23,1,.32,1);
+  overflow:hidden;
+}
+
+/* gradient border glow */
+.feature-card::before,
+.service-card::before,
+.amc-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  padding:1.5px;
+  background:linear-gradient(135deg,#2563eb,#7c3aed,#22c55e);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.4;
+  transition:.4s;
+}
+
+.feature-card:hover::before,
+.service-card:hover::before,
+.amc-card:hover::before{
+  opacity:1;
+}
+
+/* lift + glow */
+.feature-card:hover,
+.service-card:hover,
+.amc-card:hover{
+  transform:translateY(-14px) scale(1.03);
+  box-shadow:0 28px 65px rgba(37,99,235,.25);
+}
+.amc-card.featured{
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  color:#fff;
+}
+
+.amc-card.featured li,
+.amc-card.featured p{
+  color:#eef2ff;
+}
+
+.hidden{
+  opacity:0;
+  transform:translateY(60px);
+  transition:.8s ease;
+}
+
+.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.navbar.scrolled{
+  padding:14px 80px;
+  box-shadow:0 6px 25px rgba(0,0,0,.08);
+}
+
+/* FAQ animation */
+.faq-answer{
+  overflow:hidden;
+  max-height:0;
+  transition:.4s ease;
+}
+@media(max-width:900px){
+  .hero{
+    flex-direction:column;
+    padding:70px 25px;
+    gap:40px;
+    text-align:center;
+  }
+
+  .hero-content h1{
+    font-size:34px;
+  }
+}
+.faq-question{
+  cursor:pointer;
+  transition:.3s;
+}
+
+.faq-question:hover{
+  color:#2563eb;
+}
+.section{
+  padding:90px 70px;
+}
+
+@media(max-width:700px){
+  .section{
+    padding:70px 25px;
+  }
+}
+.pricing-toggle{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:50px;
+}
+
+.toggle-btn{
+  padding:12px 28px;
+  border-radius:30px;
+  border:2px solid #2563eb;
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.toggle-btn.active,
+.toggle-btn:hover{
+  background:#2563eb;
+  color:#fff;
+}
+
+.toggle-btn span{
+  font-size:12px;
+  margin-left:6px;
+}
+.stats-section{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:40px;
+  padding:90px 70px;
+  text-align:center;
+  background:#f9fafc;
+}
+
+.stat-card h2{
+  font-size:46px;
+  color:#2563eb;
+  margin-bottom:8px;
+}
+
+.stat-card p{
+  font-weight:600;
+  color:#555;
+}
+
+/*3d effect*/
+.feature-card::after,
+.service-card::after,
+.amc-card::after{
+  content:"";
+  position:absolute;
+  top:-100%;
+  left:-100%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.35),
+    transparent
+  );
+  transform:rotate(25deg);
+  transition:.8s;
+}
+
+.feature-card:hover::after,
+.service-card:hover::after,
+.amc-card:hover::after{
+  top:0;
+  left:0;
+}
+.feature-card:hover,
+.service-card:hover,
+.amc-card:hover{
+  transform:translateY(-14px) scale(1.05) rotateX(6deg);
+}
+.feature-card,
+.service-card,
+.amc-card{
+  animation:floaty 6s ease-in-out infinite;
+}
+
+@keyframes floaty{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+.whatsapp-float{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:#25D366;
+  color:#fff;
+  font-size:26px;
+  padding:16px 18px;
+  border-radius:50%;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  animation:pulse 1.5s infinite;
+  z-index:999;
+  text-decoration:none;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1)}
+}.page-loader{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.loader{
+  width:50px;
+  height:50px;
+  border:5px solid #eee;
+  border-top:5px solid #2563eb;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+.scroll-progress{
+  position:fixed;
+  top:0;
+  left:0;
+  height:4px;
+  background:#2563eb;
+  width:0%;
+  z-index:999;
+}
+
+
+</style>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="page-loader">
+  <div class="loader"></div>
+</div>
+<div class="scroll-progress"></div>
+
+ <header class="navbar">
+  <div class="logo">VENLUX</div>
+  <nav>
+   <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero-video">
+  <video autoplay muted loop playsinline>
+    <source src="img/video1.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay">
+    <h1>Smart Digital Solutions for Growing Businesses</h1>
+    <p>Web Development • AI Automation • Power BI • Social Media Ads</p>
+  
+  </div>
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+<section class="features" id="services">
+  <div class="section-header" data-aos="fade-up">
+    <h2>Our Services</h2>
+    <p>Innovative solutions that empower businesses to grow</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card" data-aos="zoom-in">
+      <span>🌐</span>
+      <h3>Web Development</h3>
+      <p>SEO optimized responsive websites.</p>
+    </div>
+
+    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+      <span>🤖</span>
+      <h3>Automation</h3>
+      <p>Lead capture, auto reply & workflow systems.</p>
+    </div>
+
+    <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+      <span>📊</span>
+      <h3>Analytics</h3>
+      <p>Powerful dashboards & business insights.</p>
+    </div>
+
+    <div class="feature-card" data-aos="zoom-in" data-aos-delay="600">
+      <span>🚀</span>
+      <h3>Digital Marketing</h3>
+      <p>Social ads, SEO & growth strategies.</p>
+    </div>
+  </div>
+  <a href="https://wa.me/919307317213" class="whatsapp-float">💬</a>
+
+</section>
+
+
+    
+<section class="section amc-section">
+  <div class="pricing-toggle">
+  <button class="toggle-btn active" data-plan="monthly">Monthly</button>
+  <button class="toggle-btn" data-plan="yearly">Yearly <span>Save 20%</span></button>
+</div>
+
+  <h2 class="section-title">AMC – Annual Maintenance Contract</h2>
+  <p class="section-subtitle">
+    Hassle-free website & system maintenance with guaranteed support.
+  </p>
+
+  <div class="amc-cards">
+
+    <!-- BASIC AMC (6 FEATURES) -->
+    <div class="amc-card">
+      <h3>Basic AMC</h3>
+      <p class="price">Ideal for small websites</p>
+      <ul>
+        <li> Website Health Check</li>
+        <li> Content Updates (Text / Images)</li>
+        <li> Basic Security Protection</li>
+        <li> Bug Fixes</li>
+        <li> Monthly Backup</li>
+        <li> Email Support</li>
+      </ul>
+    </div>
+
+    <!-- STANDARD AMC (8 FEATURES) -->
+    <div class="amc-card featured">
+      <h3>Standard AMC</h3>
+      <p class="price">Most Popular</p>
+      <ul>
+        <li> Everything in Basic AMC</li>
+        <li> Monthly Website Updates</li>
+        <li>Speed & Performance Optimization</li>
+        <li> Security Monitoring</li>
+        <li> Database Optimization</li>
+        <li> Broken Link Fix</li>
+        <li> Uptime Monitoring</li>
+        <li> WhatsApp Support</li>
+      </ul>
+    </div>
+
+    <!-- PREMIUM AMC (10 FEATURES) -->
+    <div class="amc-card">
+      <h3>Premium AMC</h3>
+      <p class="price">For growing businesses</p>
+      <ul>
+        <li> Everything in Standard AMC</li>
+        <li> Priority Support</li>
+        <li> Daily Website Backup</li>
+        <li> Advanced Security & Firewall</li>
+        <li> Emergency Issue Resolution</li>
+        <li> Speed Boost & Core Optimization</li>
+        <li> SEO Health Monitoring</li>
+        <li> Monthly Performance Report</li>
+        <li> 24/7 Assistance</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section amc-section">
+  
+  <h2 class="section-title">Social Media Ads & Automation</h2>
+  <p class="section-subtitle">
+    Grow faster with high-converting ads and smart automation across
+    Instagram, WhatsApp & Facebook.
+  </p>
+
+  <div class="amc-cards">
+
+    <!-- SOCIAL MEDIA ADS -->
+    <div class="amc-card">
+      <h3>Social Media Ads</h3>
+      <p class="price">Lead generation & brand growth</p>
+      <ul>
+        <li> Instagram & Facebook Ads</li>
+        <li> Audience Targeting</li>
+        <li> Creative Ad Design</li>
+        <li> Performance Reports</li>
+      </ul>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="amc-card featured">
+      <h3>Insta · WhatsApp · FB Automation</h3>
+      <p class="price">Smart auto-reply & lead capture</p>
+      <ul>
+        <li> Auto Replies & Chatbots</li>
+        <li> Lead Collection Forms</li>
+        <li> Follow-up Automation</li>
+        <li> WhatsApp API Integration</li>
+      </ul>
+    </div>
+
+    <!-- COMBO PLAN -->
+    <div class="amc-card">
+      <h3>Ads + Automation Combo</h3>
+      <p class="price">Best for business growth</p>
+      <ul>
+        <li> Ads + Automation Setup</li>
+        <li> Lead Funnel Creation</li>
+        <li> CRM / Sheet Integration</li>
+        <li> Priority Support</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<section class="stats-section">
+  <div class="stat-card">
+    <h2 data-count="150">0</h2>
+    <p>Projects Completed</p>
+  </div>
+
+  <div class="stat-card">
+    <h2 data-count="90">0</h2>
+    <p>Happy Clients</p>
+  </div>
+
+  <div class="stat-card">
+    <h2 data-count="5">0</h2>
+    <p>Years Experience</p>
+  </div>
+
+  <div class="stat-card">
+    <h2 data-count="24">0</h2>
+    <p>Support Hours</p>
+  </div>
+</section>
+
+
+<!-- ================= CTA ================= -->
+<section class="section">
+  <h2>Ready to Grow with Venlux?</h2>
+  <p class="section-subtitle">
+    Let’s discuss your project and build something powerful together.
+  </p>
+  <div class="hero-buttons" style="justify-content:center;">
+    <a href="#contact" class="secondary-btn">Get Free Consultation</a>
+  </div>
+</section>
+ <!-- ================= FAQ ================= -->
+<section class="section faq-section" id="faq">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <p class="section-subtitle">
+    Common questions about Venlux and our IT services.
+  </p>
+
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What services does Venlux provide?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Venlux provides website development, web applications, social media ads,
+        automation (Instagram, WhatsApp, Facebook), Power BI dashboards and AMC
+        (Annual Maintenance Contracts).
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you provide website maintenance after project delivery?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. We offer AMC plans including regular updates, backups, security,
+        performance optimization and technical support.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can you customize solutions based on my business?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Absolutely. Every solution at Venlux is customized according to your
+        business goals, industry and budget.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Do you run Instagram and Facebook ads?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        Yes. We manage end-to-end ad campaigns including creatives, targeting,
+        lead generation and performance reporting.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How can I contact Venlux for a project?
+        <span>+</span>
+      </button>
+      <div class="faq-answer">
+        You can contact us through the website form, WhatsApp, or request a
+        free consultation directly.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  © 2026 Venlux IT Company. All rights reserved.
+</footer>
+<script src="assets/script.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click',function(e){
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior:'smooth'
+      });
+    });
+  });
+</script>
+<script>
+/* ===== NAVBAR SCROLL EFFECT ===== */
+window.addEventListener("scroll",()=>{
+  document.querySelector(".navbar")
+    .classList.toggle("scrolled", window.scrollY > 60);
+});
+
+
+/* ===== SCROLL REVEAL EFFECT ===== */
+const revealItems = document.querySelectorAll(
+  "section, .feature-card, .amc-card, .faq-item"
+);
+
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:0.2});
+
+revealItems.forEach(el=>{
+  el.classList.add("hidden");
+  revealObserver.observe(el);
+});
+
+
+/* ===== FAQ ACCORDION ===== */
+document.querySelectorAll(".faq-question").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const answer = btn.nextElementSibling;
+
+    document.querySelectorAll(".faq-answer").forEach(a=>{
+      if(a !== answer) a.style.maxHeight = null;
+    });
+
+    if(answer.style.maxHeight){
+      answer.style.maxHeight = null;
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});
+
+
+/* ===== HOVER MICRO ANIMATION ===== */
+document.querySelectorAll(".feature-card,.amc-card").forEach(card=>{
+  card.addEventListener("mousemove",e=>{
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.transform =
+      `translateY(-6px) rotateX(${(y-80)/25}deg) rotateY(${(x-80)/25}deg)`;
+  });
+
+  card.addEventListener("mouseleave",()=>{
+    card.style.transform="translateY(0)";
+  });
+});
+</script>
+<script>
+const buttons = document.querySelectorAll(".toggle-btn");
+
+buttons.forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    buttons.forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+
+    document.querySelectorAll(".price").forEach(p=>{
+      if(btn.dataset.plan==="yearly"){
+        p.textContent = p.dataset.year;
+      }else{
+        p.textContent = p.dataset.month;
+      }
+    });
+  });
+});
+</script>
+<script>
+const counters = document.querySelectorAll(".stat-card h2");
+
+const counterObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = +el.dataset.count;
+      let count = 0;
+
+      const update = () => {
+        count += Math.ceil(target/80);
+        if(count < target){
+          el.textContent = count;
+          requestAnimationFrame(update);
+        }else{
+          el.textContent = target;
+        }
+      };
+      update();
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:.6});
+
+counters.forEach(c=>counterObserver.observe(c));
+window.addEventListener("load",()=>{
+  document.querySelector(".page-loader").style.display="none";
+});
+window.addEventListener("scroll",()=>{
+  const scrolled = 
+    (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.querySelector(".scroll-progress").style.width = scrolled + "%";
+});
+
+</script>
+
+
+</body>
+</html>

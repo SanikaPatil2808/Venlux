@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* NAVBAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 8%;
+  position:fixed;
+  width:100%;
+  background:rgba(11,15,26,0.7);
+  backdrop-filter:blur(12px);
+  z-index:100;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:26px;
+  font-weight:800;
+}
+
+.logo img{
+  height:42px;
+  width:auto;
+  transition:0.3s;
+}
+
+.logo img:hover{
+  filter:drop-shadow(0 0 12px #38BDF8);
+}
+
+.logo span{
+  color:#E5E7EB;
+}
+
+.logo span::after{
+  content:".";
+  color:#38BDF8;
+}
+
+/* NAV LINKS */
+nav a{
+  margin-left:25px;
+  color:#E5E7EB;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#38BDF8;
+}
+
+        </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <img src="img/venluxlogo.png" alt="Venlux Logo">
+    <span>VENLUX</span>
+  </div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">AI</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+</body>
+</html>
